@@ -342,8 +342,8 @@ pub fn sample_unchecked<R: Rng + ?Sized>(rng: &mut R, shape: f64, rate: f64) -> 
             };
         }
 
-        v *= v * v;
-        x *= x;
+        v = v.powi(3);
+        x = x.powi(2);
         let u: f64 = rng.gen();
         if u < 1.0 - 0.0331 * x * x || u.ln() < 0.5 * x + d * (1.0 - v + v.ln()) {
             return afix * d * v / rate;
